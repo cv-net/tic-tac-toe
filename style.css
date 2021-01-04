@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0px 300px;
+}
+
+.box {
+    border: 1px solid black;
+    width: 250px;
+    height: 250px;
+}
