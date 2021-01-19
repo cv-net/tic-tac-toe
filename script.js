@@ -45,7 +45,6 @@ allBoxes.forEach(element => element.addEventListener('click', (event) => {
             player1Position.push(parseInt(eventId));
             //Trying another way to make isWinner a function
             isWinner(player1Position);
-        }
             if (isWin = true) {
                 // function endGame();
                 console.log('Player 1 Wins!');
@@ -56,7 +55,6 @@ allBoxes.forEach(element => element.addEventListener('click', (event) => {
             //display 'Player 2, your turn!'
 
             };
-
         } else {
 
             target.innerHTML = '<p>O</p>';
@@ -66,7 +64,8 @@ allBoxes.forEach(element => element.addEventListener('click', (event) => {
             currentPlayer = 0;
 
         }
-    })); //else if, if there are no free boxes, then it's a tie? maybe
+    }
+})); //else if, if there are no free boxes, then it's a tie? maybe
 
 resetButton.addEventListener('click', () => {
     for ( let i = 0 ; i < allBoxes.length ; i++ ) {
