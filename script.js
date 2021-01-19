@@ -1,10 +1,6 @@
-// if someone clicked before you, switch colors?
-// if (player = 0) {} else {}
-
-// if someone clicked this before, you can't click it
 let currentPlayer = 0;
 let resetButton = document.getElementById('reset');
-
+let announcer = document.querySelector('h2');
 let allBoxes = [ ... document.getElementsByClassName('box')];
 //makes HTML collection an array
 
@@ -19,118 +15,93 @@ const winningCombos = [
     [3, 5, 7]
 ];
 
+let end = false;
+
 let player1Position = [];
 let player2Position = [];
 
-let tryOne;
-let isWin;
 
-function isWinner (position) {
+let hasWon;
+
+function isWinner () {
     for (let i = 0 ; i < winningCombos.length ; i++ ) { 
-        tryOne = position.includes(winningCombos[i]);
-        if (tryOne == true) {
-            isWin = true;
-        } else if (tryOne == false ) {
-            isWin = false;
+        if (currentPlayer == 0 ) {
+            hasWon = winningCombos[i].every(pos => player1Position.includes(pos));
+
+            if (hasWon) {
+                announcer.innerHTML = 'Player 1 Wins!'
+                console.log('Player 1 Wins!')
+                end = true;
+                break;
+            }
+
+        } else {
+            hasWon = winningCombos[i].every(pos => player2Position.includes(pos));
+
+            if (hasWon) {
+                announcer.innerHTML = 'Player 2 Wins!'
+                console.log('Player 2 Wins!')
+                end = true;
+                break;
+            }
         }
     }
-} // if you put this in the click function, would tryOne be in the click's scope? If so, whats the syntax to put this in the click?
+}
+
+function isTie () {
+    let combinedPositions = [...player1Position, ...player2Position];
+    if ( combinedPositions.length == 9 ) {
+        announcer.innerHTML = "It's a tie! Hit the reset button to play again!";
+        end = true;
+    }
+}
 
 //click if player 0, change color, say its player1s turn, change currentplayer
 allBoxes.forEach(element => element.addEventListener('click', (event) => {
     let target = event.target;
+
     if (target.innerHTML == '') {
         if (currentPlayer == 0) {
 
             target.innerHTML = '<p>X</p>';
             target.style.color = 'blue';
-            //target's ID, add to array which is this player's position
+ 
             let eventId = target.getAttribute('id');
             player1Position.push(parseInt(eventId));
-            //Trying another way to make isWinner a function
-            isWinner(player1Position);
-            if (isWin == true) {
-                // function endGame();
-                console.log('Player 1 Wins!');
-
-            } else {
-
-            currentPlayer = 1;
-            //display 'Player 2, your turn!'
-
+   
+            isWinner();
+            if (!hasWon) {
+                currentPlayer = 1;
+                announcer.innerHTML = 'Player 2, your turn!';
+ 
             };
+            isTie();
         } else {
 
             target.innerHTML = '<p>O</p>';
             target.style.color = 'coral';
+
             let eventId = target.getAttribute('id');
             player2Position.push(parseInt(eventId));
-            isWinner(player2Position);
-            if (isWin == true) {
-                // function endGame();
-                console.log('Player 2 Wins!');
 
-            } else {
-
-            currentPlayer = 0;
-            //display 'Player 1, your turn!'
-
+            isWinner();
+            if (!hasWon) {
+                currentPlayer = 0;
+                announcer.innerHTML = 'Player 1, your turn!';
             };
-
-
+            isTie();
         }
+
     }
+
+
+
 })); //else if, if there are no free boxes, then it's a tie? maybe
+
+
 
 resetButton.addEventListener('click', () => {
     for ( let i = 0 ; i < allBoxes.length ; i++ ) {
         allBoxes[i].innerHTML = '';
     }
 });
-
-
-
-
-// $('#flashMessage').hide()
-
-// $('#previewButton').click(function(){
-
-// const title = $('#blogTitleInput').val();
-
-// const content = $('#blogContentInput').val();
-
-// $('#blogTitlePreview').text(title);
-// $('#blogContentPreview').text(content);
-// $('#flashMessage') {
-
-// .slideDown(1000)
-// .delay(3000)
-// .slideUp();
-// title = '';
-// content = '';
-
-// });
-
-
-
-
-
-
-
-
-// allBoxes.forEach( element => element.addEventListener('click', (event) => {
-//     console.log({element});
-//     let {target} = element;
-//     if (currentPlayer == 0) {
-//         target.innerText = "X";
-//         target.style.cssText = "color: coral";
-//     } else {
-//         target.innerText = "O";
-
-//         target.style.cssText = "color: blue";
-//     }
-// }));
-
-
-
-

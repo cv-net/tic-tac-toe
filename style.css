@@ -1,3 +1,11 @@
+body {
+    font-family: sans-serif, 'Segoe-UI';
+}
+
+h1, h2 {
+    text-align: center;
+}
+
 .grid {
     height: 80vh;
     display: grid;
