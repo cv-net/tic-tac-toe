@@ -32,7 +32,7 @@ function isWinner (position) {
     }
 }
 
-//click, if player 0, change color, say its player1s turn, change currentplayer
+//click if player 0, change color, say its player1s turn, change currentplayer
 allBoxes.forEach(element => element.addEventListener('click', (event) => {
     let target = event.target;
     if (target.innerHTML == '') {
@@ -61,7 +61,18 @@ allBoxes.forEach(element => element.addEventListener('click', (event) => {
             target.style.color = 'coral';
             let eventId = target.getAttribute('id');
             player2Position.push(parseInt(eventId));
-            currentPlayer = 0;
+            isWinner(player2Position);
+            if (isWin = true) {
+                // function endGame();
+                console.log('Player 2 Wins!');
+
+            } else {
+
+            currentPlayer = 1;
+            //display 'Player 1, your turn!'
+
+            };
+
 
         }
     }
