@@ -24,13 +24,14 @@ let player2Position = [];
 
 function isWinner (position) {
     for (let i = 0 ; i < winningCombos.length ; i++ ) { 
-        if (position.includes(winningCombos[i])) {
+        var tryOne = position.includes(winningCombos[i]);
+        if (tryOne == true) {
             let isWin = true;
         } else {
             let isWin = false;
         }
     }
-}
+} // if you put this in the click function, would tryOne be in the click's scope? If so, whats the syntax to put this in the click?
 
 //click if player 0, change color, say its player1s turn, change currentplayer
 allBoxes.forEach(element => element.addEventListener('click', (event) => {
