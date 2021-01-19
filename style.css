@@ -10,5 +10,13 @@
 
 .box {
     border: 1px solid black;
+    font-family: sans-serif, 'Segoe-UI';
+    font-size: 4em;
+}
+
+.box p {
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
 }
 
