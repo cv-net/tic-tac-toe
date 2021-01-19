@@ -20,7 +20,6 @@ let end = false;
 let player1Position = [];
 let player2Position = [];
 
-
 let hasWon;
 
 function isWinner () {
