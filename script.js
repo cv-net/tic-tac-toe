@@ -103,4 +103,5 @@ resetButton.addEventListener('click', () => {
     for ( let i = 0 ; i < allBoxes.length ; i++ ) {
         allBoxes[i].innerHTML = '';
     }
+    announcer.innerHTML = 'Begin!';
 });
