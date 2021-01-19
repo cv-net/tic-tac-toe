@@ -25,10 +25,9 @@ let player2Position = [];
 function isWinner (position) {
     for (let i = 0 ; i < winningCombos.length ; i++ ) { 
         if (position.includes(winningCombos[i])) {
-            console.log('Player Wins!');
-            let isWinner = true;
+            let isWin = true;
         } else {
-            let isWinner = false;
+            let isWin = false;
         }
     }
 }
@@ -47,7 +46,7 @@ allBoxes.forEach(element => element.addEventListener('click', (event) => {
             //Trying another way to make isWinner a function
             isWinner(player1Position);
         }
-            if (isWinner = true) {
+            if (isWin = true) {
                 // function endGame();
                 console.log('Player 1 Wins!');
 
