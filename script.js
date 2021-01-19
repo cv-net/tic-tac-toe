@@ -22,13 +22,16 @@ const winningCombos = [
 let player1Position = [];
 let player2Position = [];
 
+let tryOne;
+let isWin;
+
 function isWinner (position) {
     for (let i = 0 ; i < winningCombos.length ; i++ ) { 
-        var tryOne = position.includes(winningCombos[i]);
+        tryOne = position.includes(winningCombos[i]);
         if (tryOne == true) {
-            let isWin = true;
-        } else {
-            let isWin = false;
+            isWin = true;
+        } else if (tryOne == false ) {
+            isWin = false;
         }
     }
 } // if you put this in the click function, would tryOne be in the click's scope? If so, whats the syntax to put this in the click?
@@ -46,7 +49,7 @@ allBoxes.forEach(element => element.addEventListener('click', (event) => {
             player1Position.push(parseInt(eventId));
             //Trying another way to make isWinner a function
             isWinner(player1Position);
-            if (isWin = true) {
+            if (isWin == true) {
                 // function endGame();
                 console.log('Player 1 Wins!');
 
@@ -63,13 +66,13 @@ allBoxes.forEach(element => element.addEventListener('click', (event) => {
             let eventId = target.getAttribute('id');
             player2Position.push(parseInt(eventId));
             isWinner(player2Position);
-            if (isWin = true) {
+            if (isWin == true) {
                 // function endGame();
                 console.log('Player 2 Wins!');
 
             } else {
 
-            currentPlayer = 1;
+            currentPlayer = 0;
             //display 'Player 1, your turn!'
 
             };
